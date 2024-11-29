@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Interactivo: Sistema de Delegación</title>
+    <style>
+        body {
+            font-family: 'Sora', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: #22C0DC;
+        }
+        textarea, select, input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn {
+            background-color: #01BD39;
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: #019c31;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f8ff;
+            border: 1px solid #22C0DC;
+            border-radius: 5px;
+        }
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #22C0DC;
+        }
+        footer a {
+            color: white;
+            background-color: #01BD39;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ejercicio Práctico: Construye tu Sistema de Delegación</h1>
+    <p>Completa los siguientes pasos para identificar tareas delegables y priorizarlas.</p>
+
+    <h2>1. Enumera tus Tareas</h2>
+    <textarea id="tasks" placeholder="Ejemplo: Responder correos, Crear reportes, Coordinar reuniones..."></textarea>
+
+    <h2>2. Clasifica las Prioridades</h2>
+    <select id="priority">
+        <option value="alta">Alta</option>
+        <option value="media">Media</option>
+        <option value="baja">Baja</option>
+    </select>
+
+    <h2>3. Asigna Recursos o Personas</h2>
+    <input type="text" id="resource" placeholder="Ejemplo: Equipo de soporte, Asistente virtual, Plataforma digital...">
+
+    <button class="btn" onclick="generatePlan()">Generar Plan</button>
+
+    <div id="result" class="result" style="display: none;">
+        <h2>Tu Plan de Delegación:</h2>
+        <p id="plan"></p>
+        <p id="suggestion" style="color: #22C0DC; font-weight: bold;"></p>
+    </div>
+</div>
+
+<footer>
+    Descubre el Secreto de Reinventarse Profesionalmente en Solo 14 Días<br>
+    <a href="https://klicana.work/Ecpzgd">¡SÍ! INSCRIBIRME EN “ASISTENTE VIRTUAL EN 14 DÍAS”</a>
+</footer>
+
+<script>
+    function generatePlan() {
+        const tasks = document.getElementById('tasks').value.split(',');
+        const priority = document.getElementById('priority').value;
+        const resource = document.getElementById('resource').value;
+        const resultDiv = document.getElementById('result');
+        const plan = document.getElementById('plan');
+        const suggestion = document.getElementById('suggestion');
+
+        if (tasks.length === 0 || resource.trim() === "") {
+            alert("Por favor, completa todos los campos.");
+            return;
+        }
+
+        let message = `Has decidido delegar las siguientes tareas:\n`;
+        tasks.forEach((task, index) => {
+            message += `Tarea ${index + 1}: ${task.trim()} (Prioridad: ${priority})\n`;
+        });
+        message += `\nRecurso asignado: ${resource}`;
+        plan.textContent = message;
+
+        const suggestions = {
+            alta: "Prioriza herramientas digitales como Asana para las tareas de alta importancia.",
+            media: "Considere entrenar a un asistente para estas tareas de prioridad media.",
+            baja: "Subcontrata o automatiza estas tareas para liberar más tiempo."
+        };
+        suggestion.textContent = suggestions[priority];
+
+        resultDiv.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
